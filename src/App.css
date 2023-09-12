@@ -8,3 +8,20 @@
 	margin: 2rem auto 2rem auto;
 	width: 50%;
 }
+.repocard-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.star-icon {
+	margin-bottom: 3px;
+}
+.repodata-div {
+	display: inline-grid;
+	grid-template-columns: repeat(3, 7.5rem [col-start]);
+	margin-left: 5%;
+}
+.repocard {
+	width: 18rem;
+	margin: 1rem;
+}

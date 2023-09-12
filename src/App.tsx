@@ -1,19 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavbarComp from './components/NavbarComp';
-import SearchBar from './components/SearchBar';
-import { Container } from 'react-bootstrap';
-import { useState } from 'react';
+import Home from './components/Home';
 
 function App() {
-	const [searchInput, setSearchInput] = useState<string>('');
-	function handleSearch(event: React.ChangeEvent): void {}
 	return (
 		<>
-			<NavbarComp />
-			<Container>
-				<SearchBar searchInput={searchInput} handleSearch={handleSearch} />
-			</Container>
+			<Home />
 		</>
 	);
 }
