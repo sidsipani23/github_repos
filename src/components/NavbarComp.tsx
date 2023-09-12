@@ -3,7 +3,7 @@ import GitHubIcon from '../assets/GitHubIcon.svg';
 function NavbarComp() {
 	return (
 		<>
-			<Navbar className='bg-body-tertiary' fixed='top'>
+			<Navbar className='bg-body-tertiary' sticky='top'>
 				<Container>
 					<div className='nav-div'>
 						<img
