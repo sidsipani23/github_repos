@@ -30,9 +30,21 @@ function RepoCard({
 				</Card.Header>
 				<Card.Body>
 					<Card.Title>{repoName}</Card.Title>
-					<Card.Text>{description}</Card.Text>
-					<Card.Text>Language Used: {languages}</Card.Text>
+					<Card.Text>
+						{description && description?.length > 150
+							? `${description?.slice(-150)}...`
+							: description}
+					</Card.Text>
 				</Card.Body>
+				{languages ? (
+					<Card.Footer>
+						<Card.Text>
+							<b>Language Used:</b> {languages}
+						</Card.Text>
+					</Card.Footer>
+				) : (
+					''
+				)}
 			</Card>
 		</>
 	);
