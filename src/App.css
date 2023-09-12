@@ -25,3 +25,8 @@
 	width: 18rem;
 	margin: 1rem;
 }
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

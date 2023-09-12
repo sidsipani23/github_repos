@@ -21,7 +21,7 @@ function RepoCard({
 			<Card className='repocard'>
 				<Card.Header className='repocard-header'>
 					<div>
-						<img src={avatar} alt='avatar' />
+						<img src={avatar} alt='avatar' height='25rem' />
 						<span>{userName}</span>
 					</div>
 					<div>
@@ -31,7 +31,7 @@ function RepoCard({
 				<Card.Body>
 					<Card.Title>{repoName}</Card.Title>
 					<Card.Text>{description}</Card.Text>
-					<Card.Text>Languages: {languages}</Card.Text>
+					<Card.Text>Language Used: {languages}</Card.Text>
 				</Card.Body>
 			</Card>
 		</>
