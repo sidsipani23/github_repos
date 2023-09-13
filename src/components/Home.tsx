@@ -1,16 +1,15 @@
 import NavbarComp from './NavbarComp';
 import SearchBar from './SearchBar';
-import RepoCard from './RepoCard';
-import Loading from './Loading';
 import { Container } from 'react-bootstrap';
 import { useState, useCallback } from 'react';
 import { fetchRepos } from '../api';
 import { debounce, throttle } from '../utils';
 import { ToastContainer, toast } from 'react-toastify';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import Loading from './Loading';
+import InfiniteScrolling from './InfiniteScrolling';
+import SelectComp from './SelectComp';
 
 function Home() {
 	const [searchInput, setSearchInput] = useState<string>('');
@@ -137,72 +136,16 @@ function Home() {
 						<SearchBar searchInput={searchInput} handleSearch={handleSearch} />
 					</Col>
 					<Col>
-						<Form.Select
-							className='sort-select'
-							value={sortBy}
-							onChange={handleSort}>
-							<option value='stars-asc'>Sort by: Stars (Low to High)</option>
-							<option value='stars-desc'>Sort by: Stars (High to Low)</option>
-							<option value='watchersCount-asc'>
-								Sort by: Watchers Count (Low to High)
-							</option>
-							<option value='watchers_count-desc'>
-								Sort by: Watchers Count (High to Low)
-							</option>
-							<option value='score-asc'>Sort by: Score (Low to high)</option>
-							<option value='score-desc'>Sort by: Score (High to Low)</option>
-							<option value='name-asc'>Sort by: Name</option>
-							<option value='created_at-asc'>
-								Sort by: CreatedAt (Latest First)
-							</option>
-							<option value='created_at-desc'>
-								Sort by: CreatedAt (Oldest First)
-							</option>
-							<option value='updated_at-asc'>
-								Sort by: UpdatedAt (Latest First)
-							</option>
-							<option value='updated_at-desc'>
-								Sort by: UpdatedAt (Oldest First)
-							</option>
-						</Form.Select>
+						<SelectComp sortBy={sortBy} handleSort={handleSort} />
 					</Col>
 				</Row>
-
-				{repoData && repoData.length > 0 && (
-					<InfiniteScroll
-						style={{ overflow: 'hidden' }}
-						dataLength={repoData.length}
-						next={() => {
-							throttleQueryData(searchInput, true);
-						}}
-						scrollThreshold={0.9}
-						hasMore={hasMoreData}
-						loader={<Loading />}
-						endMessage={
-							<p style={{ textAlign: 'center' }}>
-								<b>Yay! You have seen it all</b>
-							</p>
-						}>
-						{repoData &&
-							repoData.length > 0 &&
-							repoData.map((repo) => {
-								return (
-									<div className='repodata-div' key={repo.id}>
-										<RepoCard
-											userName={repo.userName}
-											repoName={repo.repoName}
-											avatar={repo.avatar}
-											stars={repo.stars}
-											description={repo.description}
-											languages={repo.languages}
-										/>
-									</div>
-								);
-							})}
-					</InfiniteScroll>
-				)}
+				<InfiniteScrolling
+					searchInput={searchInput}
+					repoData={repoData}
+					throttleQueryData={throttleQueryData}
+					hasMoreData={hasMoreData}
+				/>
 				{isLoading && repoData?.length === 0 ? <Loading /> : null}
-
 				<ToastContainer />
 			</Container>
 		</>
