@@ -41,7 +41,7 @@ function InfiniteScrolling({
 					hasMore={hasMoreData}
 					loader={<Loading />}
 					endMessage={
-						<p style={{ textAlign: 'center' }}>
+						<p style={{ textAlign: 'center', margin: '1rem' }}>
 							<b>Yay! You have seen it all</b>
 						</p>
 					}>

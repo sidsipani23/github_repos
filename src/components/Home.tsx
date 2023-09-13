@@ -10,6 +10,21 @@ import Col from 'react-bootstrap/Col';
 import Loading from './Loading';
 import InfiniteScrolling from './InfiniteScrolling';
 import SelectComp from './SelectComp';
+import NoItemsFound from './NoItemsFound';
+
+interface RepoData {
+	userName?: string;
+	repoName?: string;
+	avatar?: string;
+	stars?: number;
+	description?: string;
+	languages?: string;
+	id: number;
+	watchersCount?: number;
+	score?: number;
+	createdAt?: string;
+	updatedAt?: string;
+}
 
 function Home() {
 	const [searchInput, setSearchInput] = useState<string>('');
@@ -19,6 +34,7 @@ function Home() {
 	const [sortBy, setSortBy] = useState<string>('stars-asc');
 	const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
 	const [hasMoreData, setHasMoreData] = useState<boolean>(true);
+	const [isDataAvailable, setIsDataAvailable] = useState<boolean>(true);
 
 	async function handleSearch(event: React.ChangeEvent): Promise<void> {
 		try {
@@ -68,6 +84,8 @@ function Home() {
 						setIsLoading(false);
 						setTotalItemsCount(data.total_count);
 						setPageNumber(1);
+					} else {
+						setIsDataAvailable(false);
 					}
 				} else {
 					setIsLoading(true);
@@ -147,22 +165,10 @@ function Home() {
 				/>
 				{isLoading && repoData?.length === 0 ? <Loading /> : null}
 				<ToastContainer />
+				{!isDataAvailable && <NoItemsFound />}
 			</Container>
 		</>
 	);
 }
 
-interface RepoData {
-	userName?: string;
-	repoName?: string;
-	avatar?: string;
-	stars?: number;
-	description?: string;
-	languages?: string;
-	id: number;
-	watchersCount?: number;
-	score?: number;
-	createdAt?: string;
-	updatedAt?: string;
-}
 export default Home;

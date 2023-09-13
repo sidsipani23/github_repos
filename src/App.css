@@ -34,3 +34,10 @@
 .sort-select {
 	margin: 2rem auto 2rem auto;
 }
+.no-items-div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2rem;
+}

@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import StarIcon from '../assets/StarIcon.svg';
+
 interface RepoCardProps {
 	userName?: string;
 	repoName?: string;

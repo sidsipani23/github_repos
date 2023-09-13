@@ -1,5 +1,10 @@
 import Form from 'react-bootstrap/Form';
 
+interface SelectCompProps {
+	sortBy: string;
+	handleSort: (event: React.ChangeEvent) => Promise<void>;
+}
+
 function SelectComp({ sortBy, handleSort }: SelectCompProps) {
 	return (
 		<>
@@ -31,8 +36,5 @@ function SelectComp({ sortBy, handleSort }: SelectCompProps) {
 		</>
 	);
 }
-interface SelectCompProps {
-	sortBy: string;
-	handleSort: (event: React.ChangeEvent) => Promise<void>;
-}
+
 export default SelectComp;
