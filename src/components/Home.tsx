@@ -34,9 +34,9 @@ function Home() {
 	async function queryData(value: string) {
 		try {
 			if (value) {
+				setRepoData([]);
 				setIsLoading(true);
 				const [sort, orderOfSort] = sortBy.split('-');
-				console.log(sort, orderOfSort);
 				const fetchReposResp = await fetchRepos(
 					value,
 					pageNumber,
@@ -72,6 +72,12 @@ function Home() {
 	}
 	const debouncedQueryData = useCallback(debounce(queryData, 700), [sortBy]);
 	const notify = (message: string) => toast.error(message);
+	async function handleSort(event: React.ChangeEvent) {
+		const { value } = event.target as HTMLInputElement;
+		setSortBy(value);
+		await queryData(searchInput);
+		return;
+	}
 
 	return (
 		<>
@@ -85,11 +91,7 @@ function Home() {
 						<Form.Select
 							className='sort-select'
 							value={sortBy}
-							onChange={(event: React.ChangeEvent) => {
-								const { value } = event.target as HTMLInputElement;
-								console.log(value);
-								setSortBy(value);
-							}}>
+							onChange={handleSort}>
 							<option value='stars-asc'>Sort by: Stars (Low to High)</option>
 							<option value='stars-desc'>Sort by: Stars (High to Low)</option>
 							<option value='watchersCount-asc'>
