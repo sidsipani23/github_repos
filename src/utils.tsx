@@ -9,3 +9,14 @@ export const debounce = (func: (...params: any[]) => any, waitTime: number) => {
 		}, waitTime);
 	};
 };
+
+export function throttle(fn, delay: number) {
+	let run = false;
+	return function (...args) {
+		if (!run) {
+			fn(...args);
+			run = true;
+			setTimeout(() => (run = false), delay);
+		}
+	};
+}
