@@ -26,6 +26,19 @@ interface RepoData {
 	updatedAt?: string;
 }
 
+interface RepoItem {
+	id: number;
+	owner: { login: string; avatar_url: string };
+	name: string;
+	stargazers_count: number;
+	description: string;
+	language: string;
+	watchers_count: number;
+	score: number;
+	created_at: string;
+	updated_at: string;
+}
+
 function Home() {
 	const [searchInput, setSearchInput] = useState<string>('');
 	const [repoData, setRepoData] = useState<RepoData[] | null>(null);
@@ -65,7 +78,7 @@ function Home() {
 					const fetchReposResp = await fetchRepos(value, 1, sort, orderOfSort);
 					const { data } = fetchReposResp;
 					if (data.items.length > 0) {
-						const finalArr: RepoData[] = data.items.map((item) => {
+						const finalArr: RepoData[] = data.items.map((item: RepoItem) => {
 							return {
 								id: item.id,
 								userName: item.owner?.login,
@@ -107,7 +120,7 @@ function Home() {
 						);
 						const { data } = fetchReposResp;
 						if (data.items.length > 0) {
-							const finalArr: RepoData[] = data.items.map((item) => {
+							const finalArr: RepoData[] = data.items.map((item: RepoItem) => {
 								return {
 									id: item.id,
 									userName: item.owner?.login,

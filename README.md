@@ -9,6 +9,7 @@ Tools/Packages used:
 - TypeScript
 - Axios
 - React Bootstrap
+- react-infinite-scroll-component
 
 ## For a quick start:
 
@@ -24,8 +25,29 @@ Tools/Packages used:
    npm install
 ```
 
+- Create the .env.development file with the keys listed as:
+
+  1. VITE_GITHUB_KEY
+  2. VITE_GITHUB_BASE_URL
+
 - Run the project (In Development Mode)
 
 ```
    npm run dev
+```
+
+## To run the project in Production Mode:
+
+- Create the equivalent .env.production file as above with Production
+  credentials
+- Build the project:
+
+```
+   npm run build
+```
+
+- Serve the production build locally using the command:
+
+```
+   npm run preview
 ```

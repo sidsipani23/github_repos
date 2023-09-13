@@ -17,7 +17,7 @@ interface RepoData {
 }
 interface InfiniteScrolling {
 	repoData: RepoData[] | null;
-	throttleQueryData: (...args: any[]) => void;
+	throttleQueryData: (...args: unknown[]) => void;
 	searchInput: string;
 	hasMoreData: boolean;
 }
